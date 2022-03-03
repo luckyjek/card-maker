@@ -47,22 +47,28 @@ const Maker = ({authService}) => {
         authService.logout();
     };
 
-    useEffect(()=>{
-        authService.onAuthChange(user=>{
-            if(!user){
-                history('/');
-            }
-        })
-    })
-    return(
+    useEffect(() => {
+        authService.onAuthChange(user => {
+          if (!user) {
+            history.push('/');
+          }
+        });
+      });
+    
+      const addCard = card => {
+        const updated = [...cards, card];
+        setCards(updated);
+      };
+
+     return (
         <section className={styles.maker}>
-            <Header onLogout={onLogout}/>
-            <div className={styles.container}>
-                <Editor cards={cards}/>
-                <Preview cards={cards}/>
-            </div>
-            <Footer />
+        <Header onLogout={onLogout} />
+        <div className={styles.container}>
+            <Editor cards={cards} addCard={addCard} />
+            <Preview cards={cards} />
+        </div>
+        <Footer />
         </section>
-    )
+  );
 };
 export default Maker;
