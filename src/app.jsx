@@ -13,7 +13,6 @@ function App({FileInput, authService}) {
             <Route path="/" exact element={<Login authService={authService} />} />
             <Route path="/maker" exact element={<Maker  FileInput={FileInput} authService={authService} />} />
           </Routes>
-
       </BrowserRouter>
     </div>
   );
